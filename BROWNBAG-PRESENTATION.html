@@ -215,14 +215,14 @@
   </head>
   <body>
     <!-- SLIDE 1: Title -->
-    <div class="slide" data-slide="1 / 12">
+    <div class="slide" data-slide="1 / 14">
       <h1>Atomiq AI</h1>
       <p class="subtitle">
         Agentic Test Automation — One Framework, All Platforms
       </p>
       <p style="font-size: 1.1rem; color: #94a3b8; margin-top: 24px">
         Multi-agent orchestration for enterprise test automation<br />
-        Web • API • Mobile • SAP — powered by AI
+        Web • API • Mobile • SAP • AI Planning • Self-Healing • Reporting
       </p>
       <p class="author" style="margin-top: 48px">
         <strong>Sampath Racherla</strong><br />
@@ -231,7 +231,7 @@
     </div>
 
     <!-- SLIDE 2: The Problem -->
-    <div class="slide" data-slide="2 / 12">
+    <div class="slide" data-slide="2 / 14">
       <h2>The Problem</h2>
       <ul>
         <li>
@@ -254,10 +254,10 @@
     </div>
 
     <!-- SLIDE 3: The Solution -->
-    <div class="slide" data-slide="3 / 12">
+    <div class="slide" data-slide="3 / 14">
       <h2>The Solution: Agentic Architecture</h2>
       <p style="margin-bottom: 24px; color: #94a3b8">
-        AI agents that autonomously manage testing across all platforms
+        8 AI agents that autonomously plan, execute, heal, and report
       </p>
       <div class="agent-flow">
         <div class="agent-box supervisor">
@@ -287,6 +287,23 @@
           <div style="font-size: 0.8rem; color: #94a3b8">Fiori/UI5</div>
         </div>
       </div>
+      <div class="agent-flow">
+        <div class="agent-box" style="border-color: #a78bfa">
+          <div class="icon">📋</div>
+          <div class="name">Planner</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">AI Test Plans</div>
+        </div>
+        <div class="agent-box" style="border-color: #f472b6">
+          <div class="icon">🩺</div>
+          <div class="name">Healer</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">Auto-Fix</div>
+        </div>
+        <div class="agent-box" style="border-color: #34d399">
+          <div class="icon">📊</div>
+          <div class="name">Report</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">Dashboards</div>
+        </div>
+      </div>
       <p style="text-align: center; color: #64748b; margin-top: 16px">
         Connected via
         <strong style="color: #93c5fd">MessageBus</strong> (pub/sub +
@@ -295,7 +312,7 @@
     </div>
 
     <!-- SLIDE 4: How Agents Communicate -->
-    <div class="slide" data-slide="4 / 12">
+    <div class="slide" data-slide="4 / 14">
       <h2>How Agents Communicate</h2>
       <div class="two-col">
         <div>
@@ -325,32 +342,34 @@
     </div>
 
     <!-- SLIDE 5: Architecture Stack -->
-    <div class="slide" data-slide="5 / 12">
+    <div class="slide" data-slide="5 / 14">
       <h2>Full Architecture Stack</h2>
       <div class="code-block">
-        ┌──────────────────────────────────────────────────────────────┐ │
-        Agentic Orchestration Layer │ │ Supervisor → Web Agent | API Agent |
-        Mobile Agent | SAP Agent│ │ MessageBus (pub/sub + request/reply) │
-        AgentRegistry │
-        ├──────────────────────────────────────────────────────────────┤ │
-        Self-Healing Engine │ Visual Regression │ Data Generator │
-        ├──────────────────────────────────────────────────────────────┤ │ AI
-        Engine (OpenAI / Azure OpenAI / Gemini / Claude) │
-        ├──────────────────────────────────────────────────────────────┤ │
-        Playwright Foundation (Web, API, Mobile, SAP adapters) │
-        └──────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│  Agentic Orchestration Layer                                     │
+│  Supervisor → Web | API | Mobile | SAP | Planner | Healer | Report│
+│  MessageBus (pub/sub + request/reply) │ AgentRegistry            │
+├──────────────────────────────────────────────────────────────────┤
+│  AI Planning Engine │ Self-Healing Engine │ Report Generator      │
+├──────────────────────────────────────────────────────────────────┤
+│  AI Engine (OpenAI / Azure OpenAI / Gemini / Claude / Custom)    │
+├──────────────────────────────────────────────────────────────────┤
+│  Playwright Foundation (Web, API, Mobile, SAP adapters)           │
+└──────────────────────────────────────────────────────────────────┘
       </div>
       <div style="margin-top: 24px">
         <span class="badge">TypeScript</span>
         <span class="badge">Playwright</span>
         <span class="badge green">5 AI Providers</span>
         <span class="badge green">Self-Healing</span>
+        <span class="badge green">AI Planning</span>
+        <span class="badge green">Auto-Reporting</span>
         <span class="badge amber">SAP/UI5 Ready</span>
       </div>
     </div>
 
     <!-- SLIDE 6: Key Features -->
-    <div class="slide" data-slide="6 / 12">
+    <div class="slide" data-slide="6 / 14">
       <h2>Key Features</h2>
       <div class="two-col">
         <div>
@@ -385,61 +404,96 @@
     </div>
 
     <!-- SLIDE 7: Live Demo -->
-    <div class="slide" data-slide="7 / 12">
+    <div class="slide" data-slide="7 / 14">
       <h2>Live Demo 🎬</h2>
       <p style="color: #94a3b8; margin-bottom: 24px">
-        Run all agents with one command
+        Run all 8 agents with one command
       </p>
-      <div class="terminal">
-        <span class="prompt">$</span> npx tsx examples/agent-demo.ts
+      <div class="terminal"><span class="prompt">$</span> npx tsx examples/agent-demo.ts
 
-        <span class="output"
-          >═══════════════════════════════════════════════════════════ ATOMIQ AI
-          — Multi-Agent Orchestration Demo (Phase 3) Running: all agents
-          ═══════════════════════════════════════════════════════════ ✓ Agents
-          registered and started: • supervisor — orchestrate, run-regression,
-          run-suite, system-status • web — run-all, run-spec, run-grep,
-          list-specs • api — run-all, run-spec, run-grep • mobile — run-all,
-          run-spec, run-device • sap — run-all, run-spec, run-transaction,
-          check-connection</span
-        >
+<span class="output">═══════════════════════════════════════════════════════════
+  ATOMIQ AI — Multi-Agent Orchestration Demo (Phase 5)
+  Running: all agents
+═══════════════════════════════════════════════════════════
+✓ Agents registered and started:
+  • supervisor • web • api • mobile • sap • planner • healer • report</span>
 
-        <span class="success"> WebAgent: ✅ PASSED (5/5 passed in 9.3s)</span>
-        <span class="success"> ApiAgent: ✅ PASSED (5/5 passed in 8.2s)</span>
-        <span class="success">
-          MobileAgent: ✅ PASSED (3/3 passed in 7.1s)</span
-        >
-        <span class="warn">
-          SapAgent: ⚠️ Not configured (no SAP connection)</span
-        >
+<span class="success">  WebAgent:     ✅ PASSED (5/5 passed in 9.9s)
+  ApiAgent:     ✅ PASSED (5/5 passed in 5.9s)
+  MobileAgent:  ✅ PASSED (3/3 passed in 6.7s)</span>
+<span class="warn">  SapAgent:     ⚠️ Not configured</span>
+<span class="success">  PlannerAgent: ✅ Generated 5 test cases
+  HealerAgent:  ✅ Diagnosis complete (85% confidence)
+  ReportAgent:  ✅ HTML + Markdown reports generated</span>
 
-        <span class="output">
-          Total Tests: 13 | Passed: 13 | Pass Rate: 100%</span
-        >
+<span class="output">  Total Tests: 13 | Passed: 13 | Pass Rate: 100%
+  Trend: improving</span></div>
+    </div>
+
+    <!-- SLIDE 8: AI Agents (Planner, Healer, Report) -->
+    <div class="slide" data-slide="8 / 14">
+      <h2>AI-Powered Agents</h2>
+      <div class="two-col">
+        <div>
+          <h3>📋 Planner Agent</h3>
+          <ul>
+            <li>Generates test plans from feature descriptions</li>
+            <li>Decomposes features into prioritized test cases</li>
+            <li>Estimates duration and coverage</li>
+          </ul>
+          <div class="terminal" style="font-size: 0.8rem"><span class="prompt">$</span> npx tsx examples/agent-demo.ts planner
+
+<span class="success">PlannerAgent: ✅ Generated 5 test cases</span>
+  • [high] Add to Cart
+  • [high] Complete Checkout
+  • [medium] Remove from Cart
+  Estimated duration: 75s</div>
+        </div>
+        <div>
+          <h3>🩺 Healer Agent</h3>
+          <ul>
+            <li>Diagnoses failures: timeout, selector, assertion, network</li>
+            <li>85-90% confidence root cause analysis</li>
+            <li>Auto-fixable strategies for common errors</li>
+          </ul>
+          <div class="terminal" style="font-size: 0.8rem"><span class="prompt">$</span> npx tsx examples/agent-demo.ts healer
+
+<span class="success">HealerAgent: ✅ Diagnosis complete</span>
+  Error Type:   timeout
+  Root Cause:   Element not found
+  Auto-fixable: Yes
+  Confidence:   85%</div>
+        </div>
+      </div>
+      <div style="margin-top: 24px">
+        <h3>📊 Report Agent</h3>
+        <p style="color: #94a3b8">Generates HTML dashboards, Markdown reports, and tracks pass-rate trends over time.</p>
       </div>
     </div>
 
-    <!-- SLIDE 8: Single Agent Demo -->
-    <div class="slide" data-slide="8 / 12">
+    <!-- SLIDE 9: Single Agent Demo -->
+    <div class="slide" data-slide="9 / 14">
       <h2>Run Any Agent Individually</h2>
       <div class="two-col">
         <div>
-          <div class="terminal">
-            <span class="prompt">$</span> npx tsx examples/agent-demo.ts web
+          <div class="terminal"><span class="prompt">$</span> npx tsx examples/agent-demo.ts web
 
-            <span class="success"> WebAgent: ✅ PASSED (5/5 in 9.3s)</span>
-            • Login + catalog verification • Cart badge updates • Sort by price
-            • Full checkout flow • Responsive mobile layout
-          </div>
+<span class="success">  WebAgent: ✅ PASSED (5/5 in 9.9s)</span>
+  • Login + catalog verification
+  • Cart badge updates
+  • Sort by price
+  • Full checkout flow
+  • Responsive mobile layout</div>
         </div>
         <div>
-          <div class="terminal">
-            <span class="prompt">$</span> npx tsx examples/agent-demo.ts api
+          <div class="terminal"><span class="prompt">$</span> npx tsx examples/agent-demo.ts api
 
-            <span class="success"> ApiAgent: ✅ PASSED (5/5 in 5.6s)</span>
-            • GET all users • GET single user • POST create user • PUT update
-            user • DELETE user
-          </div>
+<span class="success">  ApiAgent: ✅ PASSED (5/5 in 5.9s)</span>
+  • GET all users
+  • GET single user
+  • POST create user
+  • PUT update user
+  • DELETE user</div>
         </div>
       </div>
       <p style="text-align: center; margin-top: 24px; color: #94a3b8">
@@ -451,13 +505,13 @@
             color: #a5f3fc;
           "
         >
-          npx tsx examples/agent-demo.ts [web|api|mobile|sap]
+          npx tsx examples/agent-demo.ts [web|api|mobile|sap|planner|healer|report]
         </code>
       </p>
     </div>
 
-    <!-- SLIDE 9: Results & Stats -->
-    <div class="slide" data-slide="9 / 12">
+    <!-- SLIDE 10: Results & Stats -->
+    <div class="slide" data-slide="10 / 14">
       <h2>Results at a Glance</h2>
       <div class="stat-grid">
         <div class="stat-card">
@@ -465,7 +519,7 @@
           <div class="label">Tests Passing</div>
         </div>
         <div class="stat-card">
-          <div class="number">4</div>
+          <div class="number">7</div>
           <div class="label">Specialist Agents</div>
         </div>
         <div class="stat-card">
@@ -473,7 +527,7 @@
           <div class="label">Pass Rate</div>
         </div>
         <div class="stat-card">
-          <div class="number">24.5s</div>
+          <div class="number">22.5s</div>
           <div class="label">Total Runtime</div>
         </div>
         <div class="stat-card">
@@ -481,14 +535,14 @@
           <div class="label">AI Providers</div>
         </div>
         <div class="stat-card">
-          <div class="number">1</div>
-          <div class="label">Framework to Rule All</div>
+          <div class="number">85%</div>
+          <div class="label">Healing Confidence</div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 10: Business Value -->
-    <div class="slide" data-slide="10 / 12">
+    <!-- SLIDE 11: Business Value -->
+    <div class="slide" data-slide="11 / 14">
       <h2>Business Value & ROI</h2>
       <ul>
         <li>
@@ -522,25 +576,27 @@
       </div>
     </div>
 
-    <!-- SLIDE 11: Roadmap -->
-    <div class="slide" data-slide="11 / 12">
+    <!-- SLIDE 12: Roadmap -->
+    <div class="slide" data-slide="12 / 14">
       <h2>What's Next</h2>
       <div class="two-col">
         <div>
-          <h3>✅ Completed</h3>
+          <h3>✅ Completed (Phases 1-5)</h3>
           <ul>
             <li>Phase 1: Core foundation + MessageBus</li>
             <li>Phase 2: Supervisor + WebAgent</li>
             <li>Phase 3: API, Mobile, SAP agents</li>
+            <li>Phase 4: Planner + Healer (AI-powered)</li>
+            <li>Phase 5: Report Agent (dashboards + trends)</li>
           </ul>
         </div>
         <div>
           <h3>🔜 Coming Soon</h3>
           <ul>
-            <li>Phase 4: Planner Agent (AI test planning)</li>
-            <li>Phase 4: Healer Agent (auto-fix failures)</li>
-            <li>Phase 5: Report Agent (AI analytics)</li>
-            <li>CI/CD integration (GitHub Actions)</li>
+            <li>Phase 6: CI/CD integration (GitHub Actions)</li>
+            <li>Phase 7: Visual regression agent</li>
+            <li>Phase 8: Slack/Teams notifications</li>
+            <li>Phase 9: Test data generation agent</li>
           </ul>
         </div>
       </div>
@@ -550,8 +606,24 @@
       </div>
     </div>
 
-    <!-- SLIDE 12: Q&A -->
-    <div class="slide" data-slide="12 / 12">
+    <!-- SLIDE 13: How It All Connects -->
+    <div class="slide" data-slide="13 / 14">
+      <h2>End-to-End Workflow</h2>
+      <div class="code-block" style="font-size: 1rem; line-height: 2">
+1. 📋 Planner Agent generates test plan from feature description
+2. 🧠 Supervisor dispatches tasks to specialist agents
+3. 🌐🔌📱🏢 Specialists execute tests (Web, API, Mobile, SAP)
+4. 🩺 Healer Agent auto-diagnoses any failures
+5. 📊 Report Agent generates HTML dashboard + Markdown + trends
+6. ✅ Full autonomous regression — no human intervention needed
+      </div>
+      <div class="highlight" style="margin-top: 24px">
+        <strong style="color: #4ade80">Key insight:</strong> From feature description to published report — fully autonomous, AI-driven.
+      </div>
+    </div>
+
+    <!-- SLIDE 14: Q&A -->
+    <div class="slide" data-slide="14 / 14">
       <h1 style="font-size: 4rem; text-align: center">Q&A</h1>
       <p
         style="
