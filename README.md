@@ -1,10 +1,10 @@
 # Atomiq AI
 
-> AI-powered enterprise test automation framework — Web, API, SAP, and Mobile.
+> AI-powered enterprise test automation framework with **agentic orchestration** — Web, API, SAP, and Mobile.
 >
 > **Author:** Sampath Racherla
 
-Built on **Playwright** with pluggable **AI/LLM providers** (OpenAI, Azure OpenAI, Google Gemini, Anthropic Claude), **self-healing selectors**, **visual regression testing**, **smart test data generation**, and **intelligent reporting**.
+Built on **Playwright** with pluggable **AI/LLM providers** (OpenAI, Azure OpenAI, Google Gemini, Anthropic Claude), **multi-agent orchestration**, **self-healing selectors**, **visual regression testing**, **smart test data generation**, and **intelligent reporting**.
 
 ---
 
@@ -13,6 +13,13 @@ Built on **Playwright** with pluggable **AI/LLM providers** (OpenAI, Azure OpenA
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                         Atomiq AI                             │
+├──────────────────────────────────────────────────────────────┤
+│  Agentic Orchestration Layer                                 │
+│  ┌────────────┐  ┌──────┐  ┌─────┐  ┌────────┐  ┌─────┐   │
+│  │ Supervisor │→ │ Web  │  │ API │  │ Mobile │  │ SAP │   │
+│  │   Agent    │  │Agent │  │Agent│  │ Agent  │  │Agent│   │
+│  └────────────┘  └──────┘  └─────┘  └────────┘  └─────┘   │
+│  MessageBus (pub/sub + request/reply) │ AgentRegistry        │
 ├──────────────────────────────────────────────────────────────┤
 │  Fixtures Layer (test, expect, ai, web, api, sap, mobile)    │
 ├──────────┬───────────┬──────────────┬────────────────────────┤
@@ -32,63 +39,95 @@ Built on **Playwright** with pluggable **AI/LLM providers** (OpenAI, Azure OpenA
 ### 1. Install
 
 ```bash
-cd framework
+cd "Atomiq AI"
 npm install
 ```
 
-### 2. Configure
-
-Create `ai-test.config.json` in your project root (a template is included):
-
-```json
-{
-  "ai": {
-    "type": "openai",
-    "apiKey": "${AI_API_KEY}",
-    "model": "gpt-4o"
-  },
-  "appType": "web",
-  "baseUrl": "https://your-app.com",
-  "healing": { "enabled": true, "useAI": true },
-  "visual": { "enabled": true, "threshold": 0.1 }
-}
-```
-
-Set environment variables:
+### 2. Run the Agent Demo
 
 ```bash
-export AI_API_KEY=your-key-here
-export BASE_URL=https://your-app.com
+# Run all agents (Web + API + Mobile + SAP)
+npx tsx examples/agent-demo.ts
+
+# Run a single agent
+npx tsx examples/agent-demo.ts web
+npx tsx examples/agent-demo.ts api
+npx tsx examples/agent-demo.ts mobile
+npx tsx examples/agent-demo.ts sap
 ```
 
-### 3. Write Tests
+**Sample output:**
+```
+═══════════════════════════════════════════════════════════
+  ATOMIQ AI — Multi-Agent Orchestration Demo (Phase 3)
+  Running: all agents
+═══════════════════════════════════════════════════════════
 
-```typescript
-import { test, expect } from "atomiq-ai";
+✓ Agents registered and started:
+  • supervisor — orchestrate, run-regression, run-suite, system-status
+  • web — run-all, run-spec, run-grep, list-specs
+  • api — run-all, run-spec, run-grep
+  • mobile — run-all, run-spec, run-device
+  • sap — run-all, run-spec, run-transaction, check-connection
 
-test("login flow", async ({ page, web, healing, visual, dataGen }) => {
-  // Navigate with web adapter
-  await web.navigate("/login");
+  WebAgent: ✅ PASSED (5/5 passed in 9.3s)
+  ApiAgent: ✅ PASSED (5/5 passed in 8.2s)
+  MobileAgent: ✅ PASSED (3/3 passed in 7.1s)
+  SapAgent: ⚠️  Not configured
 
-  // Self-healing selectors — auto-fix if UI changes
-  await web.fill("#username", "admin", { selfHeal: true });
-  await web.fill("#password", "secret", { selfHeal: true });
-  await web.click("#login-btn", { selfHeal: true });
-
-  // Visual regression check
-  const result = await visual.compare("dashboard", { threshold: 0.05 });
-  expect(result.match).toBe(true);
-
-  // AI-generated test data
-  const email = dataGen.randomEmail();
-  expect(email).toContain("@");
-});
+  Total Tests:   13
+  Passed:        13
+  Pass Rate:     100%
 ```
 
-### 4. Run
+### 3. Run Tests Directly
 
 ```bash
 npx playwright test
+```
+
+---
+
+## Agentic Orchestration
+
+The framework uses a **Supervisor pattern** where a central orchestrator delegates work to specialist agents:
+
+| Agent | Role | Capabilities |
+|-------|------|--------------|
+| **SupervisorAgent** | Orchestrator | `orchestrate`, `run-regression`, `run-suite`, `system-status` |
+| **WebAgent** | Browser testing | `run-all`, `run-spec`, `run-grep`, `list-specs` |
+| **ApiAgent** | REST/GraphQL testing | `run-all`, `run-spec`, `run-grep` |
+| **MobileAgent** | Device/responsive testing | `run-all`, `run-spec`, `run-device` |
+| **SapAgent** | SAP Fiori/UI5 testing | `run-all`, `run-spec`, `run-transaction`, `check-connection` |
+
+### Agent Communication
+
+Agents communicate via a **MessageBus** with pub/sub and request/reply patterns:
+
+```typescript
+import { MessageBus, AgentRegistry, SupervisorAgent, WebAgent, ApiAgent } from "./src/agents";
+
+const bus = new MessageBus();
+const registry = new AgentRegistry(bus);
+
+const supervisor = new SupervisorAgent(bus, registry);
+const webAgent = new WebAgent(bus, projectRoot);
+const apiAgent = new ApiAgent(bus, projectRoot);
+
+registry.register(supervisor);
+registry.register(webAgent);
+registry.register(apiAgent);
+registry.startAll();
+
+// Run tests via an agent
+const result = await webAgent.perform({
+  id: "task_1",
+  type: "run-spec",
+  description: "Run e-commerce tests",
+  status: "pending",
+  input: { command: "run-spec", specFile: "examples/saucedemo-test.spec.ts" },
+  createdAt: Date.now(),
+});
 ```
 
 ---
@@ -320,8 +359,19 @@ pluginManager.register({
 ## Project Structure
 
 ```
-framework/
+Atomiq AI/
 ├── src/
+│   ├── agents/                # Agentic orchestration layer
+│   │   ├── types.ts           # Agent roles, messages, task types
+│   │   ├── message-bus.ts     # Pub/sub + request/reply communication
+│   │   ├── base-agent.ts      # Abstract base class for all agents
+│   │   ├── agent-registry.ts  # Agent discovery & lifecycle
+│   │   ├── supervisor.ts      # Orchestrator agent
+│   │   ├── web-agent.ts       # Browser testing specialist
+│   │   ├── api-agent.ts       # REST/GraphQL testing specialist
+│   │   ├── mobile-agent.ts    # Device viewport testing specialist
+│   │   ├── sap-agent.ts       # SAP Fiori/UI5 testing specialist
+│   │   └── index.ts           # Barrel exports
 │   ├── core/                  # Config, types, logger, plugins
 │   ├── ai/
 │   │   ├── providers/         # OpenAI, Azure, Gemini, Claude
@@ -334,10 +384,15 @@ framework/
 │   ├── reporting/             # Report generation + analysis
 │   ├── fixtures/              # Playwright fixtures
 │   └── index.ts               # Public API
-├── examples/                  # Example test files
-├── ai-test.config.json        # Default configuration
+├── examples/
+│   ├── agent-demo.ts          # Multi-agent orchestration demo
+│   ├── saucedemo-test.spec.ts # E-commerce tests (5 passing)
+│   ├── api-test.spec.ts       # REST API tests (5 passing)
+│   ├── mobile-test.spec.ts    # Responsive tests (3 passing)
+│   └── pages/                 # Page Object Models
 ├── package.json
 ├── tsconfig.json
+├── playwright.config.ts
 └── README.md
 ```
 
