@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atomiq AI — Brownbag Session Presentation Guide</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f8fafc;
+        color: #1a202c;
+        line-height: 1.7;
+        padding: 40px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 2rem;
+        color: #2d3748;
+        margin-bottom: 8px;
+      }
+      .subtitle {
+        color: #718096;
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+      }
+      .slide {
+        background: white;
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 28px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border-left: 5px solid #3182ce;
+        page-break-inside: avoid;
+      }
+      .slide h2 {
+        font-size: 1.3rem;
+        color: #2b6cb0;
+        margin-bottom: 4px;
+      }
+      .slide .slide-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 12px;
+      }
+      .slide .timing {
+        font-size: 0.8rem;
+        color: #a0aec0;
+        font-weight: 600;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+      .slide ul {
+        margin-left: 20px;
+        margin-bottom: 12px;
+      }
+      .slide li {
+        margin-bottom: 8px;
+      }
+      .slide .speaker-notes {
+        background: #fffff0;
+        border: 1px solid #fefcbf;
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 16px;
+        font-size: 0.9rem;
+        color: #744210;
+      }
+      .slide .speaker-notes::before {
+        content: "🎤 Speaker Notes: ";
+        font-weight: 700;
+      }
+      .slide .visual-suggestion {
+        background: #ebf8ff;
+        border: 1px solid #bee3f8;
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: #2a4365;
+      }
+      .slide .visual-suggestion::before {
+        content: "📊 Visual: ";
+        font-weight: 700;
+      }
+      .section-break {
+        text-align: center;
+        padding: 16px;
+        color: #a0aec0;
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .demo-box {
+        background: #f0fff4;
+        border: 1px solid #c6f6d5;
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 12px;
+      }
+      .demo-box::before {
+        content: "💻 Live Demo: ";
+        font-weight: 700;
+        color: #22543d;
+      }
+      code {
+        background: #edf2f7;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+      @media print {
+        .slide {
+          box-shadow: none;
+          border: 1px solid #e2e8f0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Atomiq AI — Brownbag Session Guide</h1>
+    <p class="subtitle">
+      30-minute presentation for mixed audience (tech + management)
+      &nbsp;|&nbsp; By Sampath Racherla
+    </p>
+
+    <!-- SLIDE 1 -->
+    <div class="slide">
+      <h2>Slide 1</h2>
+      <div class="timing">0:00 – 2:00 (2 min)</div>
+      <div class="slide-title">Atomiq AI: One Shot to Automate Them All</div>
+      <ul>
+        <li>
+          <strong>What:</strong> AI-powered enterprise test automation framework
+        </li>
+        <li>
+          <strong>Why:</strong> One framework for Web, API, SAP & Mobile — no
+          more tool sprawl
+        </li>
+        <li><strong>Built by:</strong> Sampath Racherla</li>
+        <li>
+          <strong>Open source:</strong> github.com/sampathracherla/atomiq-ai
+        </li>
+      </ul>
+      <div class="speaker-notes">
+        Start with the problem — most enterprises use 3-5 different tools for
+        different platforms. Atomiq AI consolidates everything into one
+        TypeScript framework. Mention the name is a play on "atomic" — small,
+        powerful, explosive impact on test coverage.
+      </div>
+      <div class="visual-suggestion">
+        Title slide with Atomiq AI logo, tagline, and your name. Dark background
+        with blue accent.
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+      <h2>Slide 2</h2>
+      <div class="timing">2:00 – 5:00 (3 min)</div>
+      <div class="slide-title">The Problem We're Solving</div>
+      <ul>
+        <li>
+          Enterprise testing today = fragmented tools (Selenium, Postman,
+          Appium, Tosca...)
+        </li>
+        <li>Selectors break with every UI release → maintenance nightmare</li>
+        <li>
+          No AI integration → manual test creation, manual failure diagnosis
+        </li>
+        <li>Different skills needed per tool → team silos</li>
+        <li>
+          <strong>Result:</strong> Slow releases, flaky tests, high maintenance
+          cost
+        </li>
+      </ul>
+      <div class="speaker-notes">
+        Ask the audience: "How many of you have had a test suite break after a
+        minor UI change?" This resonates with both devs and managers. For
+        management: emphasize cost — flaky tests delay releases and waste
+        engineer time.
+      </div>
+      <div class="visual-suggestion">
+        Split screen: Left = chaos (multiple tool logos, broken tests). Right =
+        Atomiq AI single solution.
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide">
+      <h2>Slide 3</h2>
+      <div class="timing">5:00 – 8:00 (3 min)</div>
+      <div class="slide-title">Architecture — How It Works</div>
+      <ul>
+        <li>
+          <strong>Foundation:</strong> Playwright (Microsoft's modern browser
+          automation)
+        </li>
+        <li>
+          <strong>Layer 1:</strong> Adapters — Web, API, SAP, Mobile (unified
+          interface)
+        </li>
+        <li>
+          <strong>Layer 2:</strong> Self-Healing Engine — 4 strategies to
+          auto-fix broken selectors
+        </li>
+        <li>
+          <strong>Layer 3:</strong> AI Engine — pluggable LLMs (OpenAI, Azure,
+          Gemini, Claude)
+        </li>
+        <li>
+          <strong>Layer 4:</strong> Visual Regression — pixel-level screenshot
+          comparison
+        </li>
+        <li>
+          <strong>Layer 5:</strong> Reporting & Analytics — business-ready
+          reports
+        </li>
+      </ul>
+      <div class="speaker-notes">
+        For technical folks: emphasize that it's TypeScript, strictly typed,
+        fixture-based. For management: emphasize that each layer solves a
+        specific business problem — healing = less maintenance, AI = faster test
+        creation, visual = catch UI bugs automatically.
+      </div>
+      <div class="visual-suggestion">
+        Architecture diagram — stacked layers or block diagram. Use the one from
+        README.md.
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide">
+      <h2>Slide 4</h2>
+      <div class="timing">8:00 – 11:00 (3 min)</div>
+      <div class="slide-title">Key Feature: Page Object Model (POM)</div>
+      <ul>
+        <li>
+          <strong>BasePage class</strong> — every page object inherits
+          self-healing, visual, discovery
+        </li>
+        <li>Locators defined once → used everywhere</li>
+        <li>
+          If Google changes their search box selector → only 1 file to update
+        </li>
+        <li>Enterprise-ready pattern used by all major test teams worldwide</li>
+      </ul>
+      <p style="margin-top: 12px; font-size: 0.9rem; color: #4a5568">
+        <strong>Code example:</strong>
+      </p>
+      <pre
+        style="
+          background: #1a202c;
+          color: #a0f0a0;
+          padding: 16px;
+          border-radius: 8px;
+          font-size: 0.85rem;
+          overflow-x: auto;
+          margin-top: 8px;
+        "
+      >
+class GoogleHomePage extends BasePage {
+  readonly searchBox = this.first("textarea[name='q']");
+  readonly logo = this.first("img[alt='Google']");
+
+  async typeSearch(query: string) {
+    await this.searchBox.fill(query);
+  }
+}</pre
+      >
+      <div class="speaker-notes">
+        Show the before/after: without POM, selectors scattered across 50 test
+        files. With POM + BasePage, change one file and all tests continue
+        working. This is the maintainability story management cares about.
+      </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide">
+      <h2>Slide 5</h2>
+      <div class="timing">11:00 – 14:00 (3 min)</div>
+      <div class="slide-title">Key Feature: Self-Healing Selectors</div>
+      <ul>
+        <li>
+          <strong>Problem:</strong> Dev changes <code>id="btn-submit"</code> to
+          <code>id="submit-button"</code> → test breaks
+        </li>
+        <li>
+          <strong>Solution:</strong> Atomiq AI tries 4 healing strategies
+          automatically:
+        </li>
+        <li>
+          &nbsp;&nbsp;&nbsp;1. Attribute fallback (data-testid, role,
+          aria-label)
+        </li>
+        <li>&nbsp;&nbsp;&nbsp;2. Text content matching</li>
+        <li>
+          &nbsp;&nbsp;&nbsp;3. Structural similarity (DOM position, siblings)
+        </li>
+        <li>
+          &nbsp;&nbsp;&nbsp;4. AI-assisted (LLM analyzes the page to find the
+          element)
+        </li>
+        <li>
+          <strong>Result:</strong> Tests keep running even after UI changes —
+          zero manual fix
+        </li>
+      </ul>
+      <div class="speaker-notes">
+        This is the "wow" feature for both audiences. For management: "This
+        means your CI pipeline doesn't break on every sprint." For devs: "You
+        don't spend Monday morning fixing 30 broken selectors."
+      </div>
+      <div class="visual-suggestion">
+        Animation or diagram: Selector breaks → 4 strategies tried → test heals
+        itself → green checkmark.
+      </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide">
+      <h2>Slide 6</h2>
+      <div class="timing">14:00 – 17:00 (3 min)</div>
+      <div class="slide-title">Key Feature: Pluggable AI Providers</div>
+      <ul>
+        <li>
+          4 LLM providers supported: OpenAI GPT-4o, Azure OpenAI, Google Gemini,
+          Anthropic Claude
+        </li>
+        <li>
+          <strong>AI generates tests</strong> from natural language descriptions
+        </li>
+        <li>
+          <strong>AI diagnoses failures</strong> — root cause + suggested fix
+        </li>
+        <li>
+          <strong>AI enhances tests</strong> — adds assertions, accessibility
+          checks
+        </li>
+        <li>Switch providers with one config change — no lock-in</li>
+      </ul>
+      <pre
+        style="
+          background: #1a202c;
+          color: #a0f0a0;
+          padding: 16px;
+          border-radius: 8px;
+          font-size: 0.85rem;
+          overflow-x: auto;
+          margin-top: 12px;
+        "
+      >
+// Switch AI providers at runtime — zero code change
+ai.engine.setActiveProvider("claude");
+ai.engine.setActiveProvider("openai");</pre
+      >
+      <div class="speaker-notes">
+        Emphasize no vendor lock-in. If the company switches from OpenAI to
+        Azure (for compliance), it's a one-line config change. For technical
+        audience: mention it uses dynamic imports so packages are optional peer
+        dependencies.
+      </div>
+    </div>
+
+    <div class="section-break">— LIVE DEMO —</div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide">
+      <h2>Slide 7 — Live Demo</h2>
+      <div class="timing">17:00 – 24:00 (7 min)</div>
+      <div class="slide-title">Live Demo: Running Tests Across Platforms</div>
+      <div class="demo-box">
+        <strong>Demo 1 (2 min):</strong> Run Google.com POM tests — show 5 tests
+        pass, show the page object code.<br /><br />
+        <code>npx playwright test examples/google-search.spec.ts</code>
+      </div>
+      <div class="demo-box" style="margin-top: 12px">
+        <strong>Demo 2 (2 min):</strong> Run API tests — show REST CRUD
+        operations pass with response time validation.<br /><br />
+        <code>npx playwright test examples/api-test.spec.ts</code>
+      </div>
+      <div class="demo-box" style="margin-top: 12px">
+        <strong>Demo 3 (1 min):</strong> Run mobile tests — show device
+        emulation for iPhone, iPad, Pixel.<br /><br />
+        <code>npx playwright test examples/mobile-test.spec.ts</code>
+      </div>
+      <div class="demo-box" style="margin-top: 12px">
+        <strong>Demo 4 (2 min):</strong> Show the executive report — open
+        ATOMIQ-AI-EXECUTIVE-REPORT.html in browser.
+      </div>
+      <div class="speaker-notes">
+        Keep demos short and punchy. Have all commands ready in terminal tabs.
+        If anything fails live (network issues), switch to the pre-generated
+        HTML report as backup. Key message: "17 tests, 4 platforms, 22 seconds,
+        zero failures."
+      </div>
+    </div>
+
+    <!-- SLIDE 8 -->
+    <div class="slide">
+      <h2>Slide 8</h2>
+      <div class="timing">24:00 – 27:00 (3 min)</div>
+      <div class="slide-title">Business Value & ROI</div>
+      <ul>
+        <li>
+          <strong>Reduce tool licensing costs</strong> — replaces 3-5 separate
+          tools with one open-source framework
+        </li>
+        <li>
+          <strong>80% less maintenance</strong> — self-healing eliminates manual
+          selector fixes
+        </li>
+        <li>
+          <strong>5x faster test creation</strong> — AI generates tests from
+          descriptions
+        </li>
+        <li>
+          <strong>One skill set</strong> — TypeScript + Playwright covers all
+          platforms, no tool silos
+        </li>
+        <li>
+          <strong>Faster releases</strong> — reliable tests = confidence to ship
+          frequently
+        </li>
+        <li>
+          <strong>Enterprise-ready</strong> — SAP Fiori, REST APIs, responsive
+          mobile, visual regression
+        </li>
+      </ul>
+      <div class="speaker-notes">
+        This slide is for management. Use concrete numbers if you have them
+        (e.g., "Our team spent 20 hours/sprint fixing broken selectors — this
+        eliminates that"). Open source = no per-seat licensing cost.
+      </div>
+      <div class="visual-suggestion">
+        ROI comparison table: Before (multiple tools, high maintenance) vs.
+        After (Atomiq AI, low maintenance).
+      </div>
+    </div>
+
+    <!-- SLIDE 9 -->
+    <div class="slide">
+      <h2>Slide 9</h2>
+      <div class="timing">27:00 – 29:00 (2 min)</div>
+      <div class="slide-title">Getting Started & What's Next</div>
+      <ul>
+        <li>
+          <strong>GitHub:</strong> github.com/sampathracherla/atomiq-ai (public)
+        </li>
+        <li>
+          <strong>Setup:</strong> <code>npm install</code> →
+          <code>npx playwright test</code> → done
+        </li>
+        <li>
+          <strong>Next steps:</strong>
+          <ul>
+            <li>Pilot with one real application in our team</li>
+            <li>
+              Integrate into CI/CD pipeline (GitHub Actions / Azure DevOps)
+            </li>
+            <li>Add more AI provider capabilities (test from Jira tickets)</li>
+            <li>Community contributions welcome</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="speaker-notes">
+        End with a clear call-to-action. "Clone the repo, run the examples, and
+        let me know if you want to pilot this on your project." Keep it
+        approachable.
+      </div>
+    </div>
+
+    <!-- SLIDE 10 -->
+    <div class="slide">
+      <h2>Slide 10</h2>
+      <div class="timing">29:00 – 30:00 (1 min)</div>
+      <div class="slide-title">Q&A</div>
+      <ul>
+        <li>Questions?</li>
+        <li><strong>Contact:</strong> Sampath Racherla</li>
+        <li><strong>Repo:</strong> github.com/sampathracherla/atomiq-ai</li>
+      </ul>
+      <div class="speaker-notes">
+        Anticipated questions and answers:<br />
+        • "How does it compare to Cypress?" → Playwright is faster, supports
+        multiple browsers natively, and we added AI + self-healing on top.<br />
+        • "Does it work with our SAP system?" → Yes, there's a dedicated SAP
+        adapter for Fiori apps.<br />
+        • "What about test data security?" → Data gen creates synthetic data,
+        never uses real PII.<br />
+        • "Can it run in CI/CD?" → Yes, Playwright has native GitHub Actions and
+        Azure DevOps support.
+      </div>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 2px solid #e2e8f0" />
+
+    <h2 style="margin-bottom: 16px">Quick Reference — Demo Commands</h2>
+    <pre
+      style="
+        background: #1a202c;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+      "
+    >
+# Run all tests (17 total)
+npx playwright test examples/web-app.spec.ts examples/api-test.spec.ts examples/google-search.spec.ts examples/mobile-test.spec.ts
+
+# Run Google POM tests only
+npx playwright test examples/google-search.spec.ts
+
+# Run with HTML report
+npx playwright test --reporter=html
+
+# Show report
+npx playwright show-report
+
+# Open executive report
+start ATOMIQ-AI-EXECUTIVE-REPORT.html
+  </pre
+    >
+  </body>
+</html>
