@@ -1,0 +1,59 @@
+{
+  "name": "atomiq-ai",
+  "version": "1.0.0",
+  "description": "Atomiq AI — AI-powered enterprise test automation framework. Supports Web, API, SAP, and Mobile testing with pluggable LLM providers, self-healing locators, visual regression, and intelligent reporting.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "npx playwright test",
+    "test:example": "npx playwright test --config=examples/playwright.config.ts",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "test-automation",
+    "ai",
+    "playwright",
+    "enterprise",
+    "self-healing",
+    "visual-regression",
+    "sap",
+    "api-testing"
+  ],
+  "author": "Sampath Racherla",
+  "license": "MIT",
+  "dependencies": {
+    "@playwright/test": "^1.50.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "@azure/openai": "^1.0.0",
+    "@anthropic-ai/sdk": "^0.30.0",
+    "@google/generative-ai": "^0.1.0",
+    "openai": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "openai": {
+      "optional": true
+    },
+    "@azure/openai": {
+      "optional": true
+    },
+    "@google/generative-ai": {
+      "optional": true
+    },
+    "@anthropic-ai/sdk": {
+      "optional": true
+    }
+  }
+}

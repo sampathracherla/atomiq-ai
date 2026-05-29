@@ -1,0 +1,49 @@
+{
+  "ai": {
+    "type": "openai",
+    "apiKey": "${AI_API_KEY}",
+    "model": "gpt-4o",
+    "temperature": 0.2,
+    "maxTokens": 4096
+  },
+  "appType": "web",
+  "baseUrl": "https://your-app.com",
+  "healing": {
+    "enabled": true,
+    "maxAttempts": 3,
+    "useAI": true,
+    "cachePath": ".ai-test/locator-cache.json"
+  },
+  "visual": {
+    "enabled": true,
+    "baselineDir": ".ai-test/baselines",
+    "diffDir": ".ai-test/diffs",
+    "threshold": 0.1,
+    "useAI": false
+  },
+  "reporting": {
+    "format": "html",
+    "outputDir": ".ai-test/reports",
+    "includeAIAnalysis": true,
+    "includeScreenshots": true,
+    "includeHealingLog": true
+  },
+  "api": {
+    "baseUrl": "https://jsonplaceholder.typicode.com",
+    "defaultHeaders": {
+      "Content-Type": "application/json"
+    }
+  },
+  "sap": {
+    "baseUrl": "${SAP_CLOUD_BASE_URL}",
+    "client": "${SAP_CLIENT}",
+    "language": "EN",
+    "useDhikraft": true
+  },
+  "timeouts": {
+    "action": 30000,
+    "navigation": 60000,
+    "assertion": 10000
+  },
+  "logLevel": "info"
+}
