@@ -57,6 +57,7 @@ npx tsx examples/agent-demo.ts sap
 ```
 
 **Sample output:**
+
 ```
 ═══════════════════════════════════════════════════════════
   ATOMIQ AI — Multi-Agent Orchestration Demo (Phase 3)
@@ -92,20 +93,26 @@ npx playwright test
 
 The framework uses a **Supervisor pattern** where a central orchestrator delegates work to specialist agents:
 
-| Agent | Role | Capabilities |
-|-------|------|--------------|
-| **SupervisorAgent** | Orchestrator | `orchestrate`, `run-regression`, `run-suite`, `system-status` |
-| **WebAgent** | Browser testing | `run-all`, `run-spec`, `run-grep`, `list-specs` |
-| **ApiAgent** | REST/GraphQL testing | `run-all`, `run-spec`, `run-grep` |
-| **MobileAgent** | Device/responsive testing | `run-all`, `run-spec`, `run-device` |
-| **SapAgent** | SAP Fiori/UI5 testing | `run-all`, `run-spec`, `run-transaction`, `check-connection` |
+| Agent               | Role                      | Capabilities                                                  |
+| ------------------- | ------------------------- | ------------------------------------------------------------- |
+| **SupervisorAgent** | Orchestrator              | `orchestrate`, `run-regression`, `run-suite`, `system-status` |
+| **WebAgent**        | Browser testing           | `run-all`, `run-spec`, `run-grep`, `list-specs`               |
+| **ApiAgent**        | REST/GraphQL testing      | `run-all`, `run-spec`, `run-grep`                             |
+| **MobileAgent**     | Device/responsive testing | `run-all`, `run-spec`, `run-device`                           |
+| **SapAgent**        | SAP Fiori/UI5 testing     | `run-all`, `run-spec`, `run-transaction`, `check-connection`  |
 
 ### Agent Communication
 
 Agents communicate via a **MessageBus** with pub/sub and request/reply patterns:
 
 ```typescript
-import { MessageBus, AgentRegistry, SupervisorAgent, WebAgent, ApiAgent } from "./src/agents";
+import {
+  MessageBus,
+  AgentRegistry,
+  SupervisorAgent,
+  WebAgent,
+  ApiAgent,
+} from "./src/agents";
 
 const bus = new MessageBus();
 const registry = new AgentRegistry(bus);

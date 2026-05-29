@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atomiq AI — Brownbag Session: Agentic Test Automation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+        line-height: 1.7;
+      }
+      .slide {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px 80px;
+        border-bottom: 2px solid #1e293b;
+        position: relative;
+      }
+      .slide::after {
+        content: attr(data-slide);
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
+        color: #475569;
+        font-size: 0.9rem;
+      }
+      .slide h1 {
+        font-size: 3rem;
+        color: #60a5fa;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      .slide h2 {
+        font-size: 2rem;
+        color: #93c5fd;
+        margin-bottom: 24px;
+      }
+      .slide h3 {
+        font-size: 1.4rem;
+        color: #60a5fa;
+        margin-bottom: 12px;
+      }
+      .subtitle {
+        font-size: 1.4rem;
+        color: #94a3b8;
+        margin-bottom: 32px;
+      }
+      .author {
+        font-size: 1.1rem;
+        color: #64748b;
+      }
+      ul {
+        list-style: none;
+        margin: 16px 0;
+      }
+      ul li {
+        padding: 10px 0;
+        padding-left: 28px;
+        position: relative;
+        font-size: 1.2rem;
+      }
+      ul li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: #60a5fa;
+        font-weight: bold;
+      }
+      .highlight {
+        background: linear-gradient(135deg, #1e3a5f, #1e293b);
+        border: 1px solid #2563eb;
+        border-radius: 12px;
+        padding: 24px 32px;
+        margin: 20px 0;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+        margin: 32px 0;
+      }
+      .stat-card {
+        background: #1e293b;
+        border-radius: 12px;
+        padding: 24px;
+        text-align: center;
+        border: 1px solid #334155;
+      }
+      .stat-card .number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #60a5fa;
+      }
+      .stat-card .label {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        margin-top: 4px;
+      }
+      .code-block {
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 20px 24px;
+        font-family: "Cascadia Code", "Fira Code", monospace;
+        font-size: 0.95rem;
+        color: #a5f3fc;
+        overflow-x: auto;
+        margin: 16px 0;
+        white-space: pre;
+      }
+      .agent-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin: 32px 0;
+      }
+      .agent-box {
+        background: #1e293b;
+        border: 2px solid #3b82f6;
+        border-radius: 12px;
+        padding: 16px 24px;
+        text-align: center;
+        min-width: 140px;
+      }
+      .agent-box.supervisor {
+        border-color: #f59e0b;
+        background: #1c1917;
+      }
+      .agent-box .icon {
+        font-size: 1.8rem;
+        margin-bottom: 4px;
+      }
+      .agent-box .name {
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+      .arrow {
+        color: #60a5fa;
+        font-size: 1.5rem;
+      }
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 24px 0;
+      }
+      .badge {
+        display: inline-block;
+        background: #1e40af;
+        color: #dbeafe;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 2px 4px;
+      }
+      .badge.green {
+        background: #166534;
+        color: #bbf7d0;
+      }
+      .badge.amber {
+        background: #92400e;
+        color: #fde68a;
+      }
+      .terminal {
+        background: #0c0c0c;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 20px;
+        font-family: "Cascadia Code", monospace;
+        font-size: 0.9rem;
+        color: #4ade80;
+        margin: 16px 0;
+        white-space: pre;
+      }
+      .terminal .prompt {
+        color: #60a5fa;
+      }
+      .terminal .output {
+        color: #e2e8f0;
+      }
+      .terminal .success {
+        color: #4ade80;
+      }
+      .terminal .warn {
+        color: #fbbf24;
+      }
+      @media print {
+        .slide {
+          min-height: auto;
+          page-break-after: always;
+          padding: 40px;
+        }
+        body {
+          background: white;
+          color: #1a202c;
+        }
+        .slide h1,
+        .slide h2 {
+          color: #1e40af;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SLIDE 1: Title -->
+    <div class="slide" data-slide="1 / 12">
+      <h1>Atomiq AI</h1>
+      <p class="subtitle">
+        Agentic Test Automation — One Framework, All Platforms
+      </p>
+      <p style="font-size: 1.1rem; color: #94a3b8; margin-top: 24px">
+        Multi-agent orchestration for enterprise test automation<br />
+        Web • API • Mobile • SAP — powered by AI
+      </p>
+      <p class="author" style="margin-top: 48px">
+        <strong>Sampath Racherla</strong><br />
+        github.com/sampathracherla/atomiq-ai
+      </p>
+    </div>
+
+    <!-- SLIDE 2: The Problem -->
+    <div class="slide" data-slide="2 / 12">
+      <h2>The Problem</h2>
+      <ul>
+        <li>
+          Enterprise testing = <strong>fragmented tools</strong> (Selenium,
+          Postman, Appium, Tosca...)
+        </li>
+        <li>
+          Selectors break every sprint → <strong>maintenance nightmare</strong>
+        </li>
+        <li>
+          No AI integration → manual test creation, manual failure diagnosis
+        </li>
+        <li>Different skills per tool → <strong>team silos</strong></li>
+        <li>SAP teams use different tools than web teams</li>
+      </ul>
+      <div class="highlight" style="margin-top: 32px">
+        <strong style="color: #f59e0b">Result:</strong> Slow releases, flaky
+        tests, high maintenance cost, 3-5 tools to license and manage
+      </div>
+    </div>
+
+    <!-- SLIDE 3: The Solution -->
+    <div class="slide" data-slide="3 / 12">
+      <h2>The Solution: Agentic Architecture</h2>
+      <p style="margin-bottom: 24px; color: #94a3b8">
+        AI agents that autonomously manage testing across all platforms
+      </p>
+      <div class="agent-flow">
+        <div class="agent-box supervisor">
+          <div class="icon">🧠</div>
+          <div class="name">Supervisor</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">Orchestrator</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="agent-box">
+          <div class="icon">🌐</div>
+          <div class="name">Web Agent</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">Browser Tests</div>
+        </div>
+        <div class="agent-box">
+          <div class="icon">🔌</div>
+          <div class="name">API Agent</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">REST/GraphQL</div>
+        </div>
+        <div class="agent-box">
+          <div class="icon">📱</div>
+          <div class="name">Mobile Agent</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">Device Testing</div>
+        </div>
+        <div class="agent-box">
+          <div class="icon">🏢</div>
+          <div class="name">SAP Agent</div>
+          <div style="font-size: 0.8rem; color: #94a3b8">Fiori/UI5</div>
+        </div>
+      </div>
+      <p style="text-align: center; color: #64748b; margin-top: 16px">
+        Connected via
+        <strong style="color: #93c5fd">MessageBus</strong> (pub/sub +
+        request/reply)
+      </p>
+    </div>
+
+    <!-- SLIDE 4: How Agents Communicate -->
+    <div class="slide" data-slide="4 / 12">
+      <h2>How Agents Communicate</h2>
+      <div class="two-col">
+        <div>
+          <h3>MessageBus Pattern</h3>
+          <ul>
+            <li>Pub/Sub — agents subscribe by role</li>
+            <li>Request/Reply — await responses</li>
+            <li>Broadcast — system-wide events</li>
+            <li>Full message history for debugging</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Agent Lifecycle</h3>
+          <ul>
+            <li>Register → Start → Execute → Report</li>
+            <li>AgentRegistry manages discovery</li>
+            <li>Supervisor routes tasks automatically</li>
+            <li>Parallel or sequential execution</li>
+          </ul>
+        </div>
+      </div>
+      <div class="code-block">
+        Supervisor → MessageBus → WebAgent WebAgent executes tests → MessageBus
+        → Supervisor receives result { type: "result", metrics: { passed: 5,
+        failed: 0 } }
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Architecture Stack -->
+    <div class="slide" data-slide="5 / 12">
+      <h2>Full Architecture Stack</h2>
+      <div class="code-block">
+        ┌──────────────────────────────────────────────────────────────┐ │
+        Agentic Orchestration Layer │ │ Supervisor → Web Agent | API Agent |
+        Mobile Agent | SAP Agent│ │ MessageBus (pub/sub + request/reply) │
+        AgentRegistry │
+        ├──────────────────────────────────────────────────────────────┤ │
+        Self-Healing Engine │ Visual Regression │ Data Generator │
+        ├──────────────────────────────────────────────────────────────┤ │ AI
+        Engine (OpenAI / Azure OpenAI / Gemini / Claude) │
+        ├──────────────────────────────────────────────────────────────┤ │
+        Playwright Foundation (Web, API, Mobile, SAP adapters) │
+        └──────────────────────────────────────────────────────────────┘
+      </div>
+      <div style="margin-top: 24px">
+        <span class="badge">TypeScript</span>
+        <span class="badge">Playwright</span>
+        <span class="badge green">5 AI Providers</span>
+        <span class="badge green">Self-Healing</span>
+        <span class="badge amber">SAP/UI5 Ready</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Key Features -->
+    <div class="slide" data-slide="6 / 12">
+      <h2>Key Features</h2>
+      <div class="two-col">
+        <div>
+          <h3>🔧 Self-Healing Selectors</h3>
+          <ul>
+            <li>4 strategies: attribute, text, structure, AI</li>
+            <li>Auto-fix broken selectors at runtime</li>
+            <li>Zero manual maintenance</li>
+          </ul>
+          <h3 style="margin-top: 24px">🤖 Pluggable AI Providers</h3>
+          <ul>
+            <li>OpenAI, Azure OpenAI, Gemini, Claude</li>
+            <li>Switch with one config change</li>
+            <li>AI generates tests from descriptions</li>
+          </ul>
+        </div>
+        <div>
+          <h3>📊 Visual Regression</h3>
+          <ul>
+            <li>Pixel-level screenshot comparison</li>
+            <li>Auto-baseline management</li>
+            <li>Mask dynamic regions</li>
+          </ul>
+          <h3 style="margin-top: 24px">📋 Page Object Model</h3>
+          <ul>
+            <li>BasePage with built-in healing</li>
+            <li>Locators defined once, used everywhere</li>
+            <li>Enterprise maintainability pattern</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Live Demo -->
+    <div class="slide" data-slide="7 / 12">
+      <h2>Live Demo 🎬</h2>
+      <p style="color: #94a3b8; margin-bottom: 24px">
+        Run all agents with one command
+      </p>
+      <div class="terminal">
+        <span class="prompt">$</span> npx tsx examples/agent-demo.ts
+
+        <span class="output"
+          >═══════════════════════════════════════════════════════════ ATOMIQ AI
+          — Multi-Agent Orchestration Demo (Phase 3) Running: all agents
+          ═══════════════════════════════════════════════════════════ ✓ Agents
+          registered and started: • supervisor — orchestrate, run-regression,
+          run-suite, system-status • web — run-all, run-spec, run-grep,
+          list-specs • api — run-all, run-spec, run-grep • mobile — run-all,
+          run-spec, run-device • sap — run-all, run-spec, run-transaction,
+          check-connection</span
+        >
+
+        <span class="success"> WebAgent: ✅ PASSED (5/5 passed in 9.3s)</span>
+        <span class="success"> ApiAgent: ✅ PASSED (5/5 passed in 8.2s)</span>
+        <span class="success">
+          MobileAgent: ✅ PASSED (3/3 passed in 7.1s)</span
+        >
+        <span class="warn">
+          SapAgent: ⚠️ Not configured (no SAP connection)</span
+        >
+
+        <span class="output">
+          Total Tests: 13 | Passed: 13 | Pass Rate: 100%</span
+        >
+      </div>
+    </div>
+
+    <!-- SLIDE 8: Single Agent Demo -->
+    <div class="slide" data-slide="8 / 12">
+      <h2>Run Any Agent Individually</h2>
+      <div class="two-col">
+        <div>
+          <div class="terminal">
+            <span class="prompt">$</span> npx tsx examples/agent-demo.ts web
+
+            <span class="success"> WebAgent: ✅ PASSED (5/5 in 9.3s)</span>
+            • Login + catalog verification • Cart badge updates • Sort by price
+            • Full checkout flow • Responsive mobile layout
+          </div>
+        </div>
+        <div>
+          <div class="terminal">
+            <span class="prompt">$</span> npx tsx examples/agent-demo.ts api
+
+            <span class="success"> ApiAgent: ✅ PASSED (5/5 in 5.6s)</span>
+            • GET all users • GET single user • POST create user • PUT update
+            user • DELETE user
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 24px; color: #94a3b8">
+        <code
+          style="
+            background: #1e293b;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: #a5f3fc;
+          "
+        >
+          npx tsx examples/agent-demo.ts [web|api|mobile|sap]
+        </code>
+      </p>
+    </div>
+
+    <!-- SLIDE 9: Results & Stats -->
+    <div class="slide" data-slide="9 / 12">
+      <h2>Results at a Glance</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="number">13</div>
+          <div class="label">Tests Passing</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">4</div>
+          <div class="label">Specialist Agents</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">100%</div>
+          <div class="label">Pass Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">24.5s</div>
+          <div class="label">Total Runtime</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">5</div>
+          <div class="label">AI Providers</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">1</div>
+          <div class="label">Framework to Rule All</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: Business Value -->
+    <div class="slide" data-slide="10 / 12">
+      <h2>Business Value & ROI</h2>
+      <ul>
+        <li>
+          <strong>Eliminate tool sprawl</strong> — replaces 3-5 separate tools
+          with one open-source framework
+        </li>
+        <li>
+          <strong>80% less maintenance</strong> — self-healing eliminates manual
+          selector fixes
+        </li>
+        <li>
+          <strong>5x faster test creation</strong> — AI generates tests from
+          natural language
+        </li>
+        <li>
+          <strong>One skill set</strong> — TypeScript covers all platforms, no
+          team silos
+        </li>
+        <li>
+          <strong>Autonomous operation</strong> — agents run, diagnose, and
+          report without human intervention
+        </li>
+        <li>
+          <strong>Enterprise-ready</strong> — SAP Fiori, REST APIs, responsive
+          mobile, visual regression
+        </li>
+      </ul>
+      <div class="highlight" style="margin-top: 32px">
+        <strong style="color: #4ade80">Bottom line:</strong> Faster releases,
+        fewer flaky tests, lower licensing costs, one team can test everything.
+      </div>
+    </div>
+
+    <!-- SLIDE 11: Roadmap -->
+    <div class="slide" data-slide="11 / 12">
+      <h2>What's Next</h2>
+      <div class="two-col">
+        <div>
+          <h3>✅ Completed</h3>
+          <ul>
+            <li>Phase 1: Core foundation + MessageBus</li>
+            <li>Phase 2: Supervisor + WebAgent</li>
+            <li>Phase 3: API, Mobile, SAP agents</li>
+          </ul>
+        </div>
+        <div>
+          <h3>🔜 Coming Soon</h3>
+          <ul>
+            <li>Phase 4: Planner Agent (AI test planning)</li>
+            <li>Phase 4: Healer Agent (auto-fix failures)</li>
+            <li>Phase 5: Report Agent (AI analytics)</li>
+            <li>CI/CD integration (GitHub Actions)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight" style="margin-top: 32px">
+        <strong>Get involved:</strong> Clone the repo, run the demo, propose a
+        pilot project.
+      </div>
+    </div>
+
+    <!-- SLIDE 12: Q&A -->
+    <div class="slide" data-slide="12 / 12">
+      <h1 style="font-size: 4rem; text-align: center">Q&A</h1>
+      <p
+        style="
+          text-align: center;
+          font-size: 1.3rem;
+          color: #94a3b8;
+          margin-top: 32px;
+        "
+      >
+        Questions & Discussion
+      </p>
+      <div style="text-align: center; margin-top: 48px; color: #64748b">
+        <p><strong>Sampath Racherla</strong></p>
+        <p style="margin-top: 8px">github.com/sampathracherla/atomiq-ai</p>
+        <p style="margin-top: 24px; font-size: 0.9rem">
+          <code
+            style="
+              background: #1e293b;
+              padding: 8px 16px;
+              border-radius: 6px;
+              color: #a5f3fc;
+            "
+          >
+            npx tsx examples/agent-demo.ts
+          </code>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

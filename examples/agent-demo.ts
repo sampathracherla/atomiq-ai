@@ -1,18 +1,23 @@
 /**
- * Atomiq AI — Agent Demo (Phase 3)
+ * Atomiq AI — Agent Demo (Phase 5)
  *
  * Demonstrates full multi-agent orchestration:
  * 1. Create message bus & registry
- * 2. Register supervisor + all specialist agents (Web, API, Mobile, SAP)
+ * 2. Register supervisor + all specialist agents (Web, API, Mobile, SAP, Planner, Healer, Report)
  * 3. Run individual agent tasks
- * 4. Run full regression via supervisor
+ * 4. AI Planner generates test plans
+ * 5. Healer diagnoses failures
+ * 6. Report Agent generates HTML/Markdown dashboards
  *
  * Usage:
- *   npx tsx examples/agent-demo.ts          # Run all agents
- *   npx tsx examples/agent-demo.ts web      # Run only WebAgent
- *   npx tsx examples/agent-demo.ts api      # Run only ApiAgent
- *   npx tsx examples/agent-demo.ts mobile   # Run only MobileAgent
- *   npx tsx examples/agent-demo.ts sap      # Run only SapAgent
+ *   npx tsx examples/agent-demo.ts            # Run all agents
+ *   npx tsx examples/agent-demo.ts web        # Run only WebAgent
+ *   npx tsx examples/agent-demo.ts api        # Run only ApiAgent
+ *   npx tsx examples/agent-demo.ts mobile     # Run only MobileAgent
+ *   npx tsx examples/agent-demo.ts sap        # Run only SapAgent
+ *   npx tsx examples/agent-demo.ts planner    # Run only PlannerAgent
+ *   npx tsx examples/agent-demo.ts healer     # Run only HealerAgent
+ *   npx tsx examples/agent-demo.ts report     # Run only ReportAgent
  */
 
 import {
@@ -23,6 +28,9 @@ import {
   ApiAgent,
   MobileAgent,
   SapAgent,
+  PlannerAgent,
+  HealerAgent,
+  ReportAgent,
 } from "../src/agents";
 import type { Task } from "../src/agents";
 import * as path from "path";
@@ -43,8 +51,16 @@ function printResult(agentName: string, result: any) {
 }
 
 async function main() {
-  const filter = process.argv[2]?.toLowerCase(); // web | api | mobile | sap | undefined (all)
-  const validFilters = ["web", "api", "mobile", "sap"];
+  const filter = process.argv[2]?.toLowerCase();
+  const validFilters = [
+    "web",
+    "api",
+    "mobile",
+    "sap",
+    "planner",
+    "healer",
+    "report",
+  ];
   if (filter && !validFilters.includes(filter)) {
     console.error(
       `Usage: npx tsx examples/agent-demo.ts [${validFilters.join("|")}]`,
@@ -55,7 +71,7 @@ async function main() {
   const runAgent = (name: string) => !filter || filter === name;
 
   console.log("═══════════════════════════════════════════════════════════");
-  console.log("  ATOMIQ AI — Multi-Agent Orchestration Demo (Phase 3)");
+  console.log("  ATOMIQ AI — Multi-Agent Orchestration Demo (Phase 5)");
   console.log(
     `  ${filter ? `Running: ${filter} agent only` : "Running: all agents"}`,
   );
@@ -72,12 +88,18 @@ async function main() {
   const apiAgent = new ApiAgent(bus, projectRoot);
   const mobileAgent = new MobileAgent(bus, projectRoot);
   const sapAgent = new SapAgent(bus, projectRoot);
+  const plannerAgent = new PlannerAgent(bus);
+  const healerAgent = new HealerAgent(bus, projectRoot);
+  const reportAgent = new ReportAgent(bus, projectRoot);
 
   registry.register(supervisor);
   registry.register(webAgent);
   registry.register(apiAgent);
   registry.register(mobileAgent);
   registry.register(sapAgent);
+  registry.register(plannerAgent);
+  registry.register(healerAgent);
+  registry.register(reportAgent);
 
   // 3. Start all agents
   registry.startAll();
@@ -153,6 +175,129 @@ async function main() {
     if (sapResult.data) {
       console.log(`    ${JSON.stringify(sapResult.data)}`);
     }
+  }
+
+  if (runAgent("planner")) {
+    printHeader("Task: AI Test Planning (E-Commerce Checkout)");
+    const planResult = await plannerAgent.perform({
+      id: `plan_${Date.now()}`,
+      type: "generate-plan",
+      description: "Generate test plan for checkout flow",
+      status: "pending",
+      input: {
+        command: "generate-plan",
+        feature: "E-Commerce Checkout",
+        description:
+          "User adds items to cart, proceeds to checkout, fills shipping and payment, completes order",
+        appType: "web",
+      },
+      createdAt: Date.now(),
+    });
+    const plan = planResult.data as any;
+    console.log(
+      `  PlannerAgent: ✅ Generated ${plan?.items?.length || 0} test cases`,
+    );
+    if (plan?.items) {
+      for (const item of plan.items.slice(0, 5)) {
+        console.log(`    • [${item.priority}] ${item.title}`);
+      }
+      if (plan.items.length > 5) {
+        console.log(`    ... and ${plan.items.length - 5} more`);
+      }
+    }
+    console.log(`    Estimated duration: ${plan?.estimatedDuration}`);
+  }
+
+  if (runAgent("healer")) {
+    printHeader("Task: Failure Diagnosis");
+    const healResult = await healerAgent.perform({
+      id: `heal_${Date.now()}`,
+      type: "diagnose",
+      description: "Diagnose a timeout failure",
+      status: "pending",
+      input: {
+        command: "diagnose",
+        errorMessage:
+          "locator.click: Timeout 30000ms exceeded. Waiting for locator('#submit-btn').click()",
+        testFile: "examples/checkout.spec.ts",
+      },
+      createdAt: Date.now(),
+    });
+    const diagnosis = healResult.data as any;
+    console.log(`  HealerAgent: ✅ Diagnosis complete`);
+    console.log(`    Error Type:   ${diagnosis?.errorType}`);
+    console.log(`    Root Cause:   ${diagnosis?.rootCause}`);
+    console.log(`    Suggestion:   ${diagnosis?.suggestion}`);
+    console.log(`    Auto-fixable: ${diagnosis?.autoFixable ? "Yes" : "No"}`);
+    console.log(
+      `    Confidence:   ${((diagnosis?.confidence || 0) * 100).toFixed(0)}%`,
+    );
+  }
+
+  // ──── Report Agent: Generate Reports ────
+
+  if (runAgent("report") || (!filter && results.length > 0)) {
+    printHeader("Task: Report Generation");
+
+    // Build agent results for report
+    const reportInput = results.map(({ name, result }) => ({
+      agent: name,
+      success: result.success,
+      metrics: result.metrics,
+    }));
+
+    // Generate summary
+    const summaryResult = await reportAgent.perform({
+      id: `report_summary_${Date.now()}`,
+      type: "generate-summary",
+      description: "Generate test execution summary",
+      status: "pending",
+      input: { command: "generate-summary", results: reportInput },
+      createdAt: Date.now(),
+    });
+    const summary = summaryResult.data as any;
+    console.log(`  ReportAgent: ✅ Summary generated`);
+    console.log(
+      `    Total: ${summary?.totalTests} | Passed: ${summary?.passed} | Failed: ${summary?.failed} | Rate: ${summary?.passRate}`,
+    );
+
+    // Export HTML
+    const htmlResult = await reportAgent.perform({
+      id: `report_html_${Date.now()}`,
+      type: "export-html",
+      description: "Export HTML report dashboard",
+      status: "pending",
+      input: { command: "export-html", results: reportInput },
+      createdAt: Date.now(),
+    });
+    const htmlData = htmlResult.data as any;
+    console.log(`    HTML Report: ${htmlData?.file}`);
+
+    // Export Markdown
+    const mdResult = await reportAgent.perform({
+      id: `report_md_${Date.now()}`,
+      type: "export-markdown",
+      description: "Export Markdown report",
+      status: "pending",
+      input: { command: "export-markdown", results: reportInput },
+      createdAt: Date.now(),
+    });
+    const mdData = mdResult.data as any;
+    console.log(`    Markdown Report: ${mdData?.file}`);
+
+    // Trend analysis
+    const trendResult = await reportAgent.perform({
+      id: `report_trend_${Date.now()}`,
+      type: "trend-analysis",
+      description: "Analyze pass rate trends",
+      status: "pending",
+      input: { command: "trend-analysis" },
+      createdAt: Date.now(),
+    });
+    const trend = trendResult.data as any;
+    console.log(
+      `    Trend: ${trend?.trend} (avg pass rate: ${trend?.avgPassRate?.toFixed(1) || 0}%)`,
+    );
   }
 
   // ──── Summary ────

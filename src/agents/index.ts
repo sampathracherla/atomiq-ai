@@ -12,6 +12,9 @@ export { WebAgent } from "./web-agent";
 export { ApiAgent } from "./api-agent";
 export { MobileAgent } from "./mobile-agent";
 export { SapAgent } from "./sap-agent";
+export { PlannerAgent } from "./planner-agent";
+export { HealerAgent } from "./healer-agent";
+export { ReportAgent } from "./report-agent";
 export type {
   AgentRole,
   AgentMessage,

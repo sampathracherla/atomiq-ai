@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2026-05-29T19:51:27.245Z",
+    "passRate": 0,
+    "totalTests": 0,
+    "duration": 0
+  },
+  {
+    "date": "2026-05-29T19:51:27.250Z",
+    "passRate": 0,
+    "totalTests": 0,
+    "duration": 0
+  },
+  {
+    "date": "2026-05-29T19:51:27.254Z",
+    "passRate": 0,
+    "totalTests": 0,
+    "duration": 0
+  },
+  {
+    "date": "2026-05-29T19:52:02.130Z",
+    "passRate": 100,
+    "totalTests": 13,
+    "duration": 22.5
+  },
+  {
+    "date": "2026-05-29T19:52:02.135Z",
+    "passRate": 100,
+    "totalTests": 13,
+    "duration": 22.5
+  },
+  {
+    "date": "2026-05-29T19:52:02.139Z",
+    "passRate": 100,
+    "totalTests": 13,
+    "duration": 22.5
+  }
+]
