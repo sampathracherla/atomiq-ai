@@ -1,0 +1,907 @@
+﻿{
+  "config": {
+    "rootDir": "C:/Sampath/TestAutomation/Panasonic/Atomiq AI",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Sampath/TestAutomation/Panasonic/Atomiq AI/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Sampath/TestAutomation/Panasonic/Atomiq AI",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "examples\\api-test.spec.ts",
+      "file": "examples/api-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Testing ΓÇö REST Endpoints (POM)",
+          "file": "examples/api-test.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "GET request with validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 549,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:08.530Z] [INFO] [Adapter:API]\u001b[0m GET /users ΓåÆ 200 (507ms)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Fetch users list",
+                          "duration": 527
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:07.927Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5dddeb94828e49e9668c-74b6be0ca972062dbff8",
+              "file": "examples/api-test.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "POST request ΓÇö create resource",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 330,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:08.921Z] [INFO] [Adapter:API]\u001b[0m POST /users ΓåÆ 201 (303ms)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Create new user",
+                          "duration": 310
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:08.566Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5dddeb94828e49e9668c-5c4ed25f008ed4636e0c",
+              "file": "examples/api-test.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "PUT request ΓÇö update resource",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 773,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:09.746Z] [INFO] [Adapter:API]\u001b[0m PUT /users/1 ΓåÆ 200 (751ms)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Update user",
+                          "duration": 758
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:08.954Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5dddeb94828e49e9668c-29b7b848e57aac6287f9",
+              "file": "examples/api-test.spec.ts",
+              "line": 42,
+              "column": 7
+            },
+            {
+              "title": "DELETE request",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 309,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:10.096Z] [INFO] [Adapter:API]\u001b[0m DELETE /users/1 ΓåÆ 200 (284ms)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Delete user",
+                          "duration": 287
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:09.768Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5dddeb94828e49e9668c-2166dc891f8a79d94946",
+              "file": "examples/api-test.spec.ts",
+              "line": 51,
+              "column": 7
+            },
+            {
+              "title": "API performance check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 89,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:10.197Z] [INFO] [Adapter:API]\u001b[0m GET /users/1 ΓåÆ 200 (78ms)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Measure response time",
+                          "duration": 82
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:10.107Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5dddeb94828e49e9668c-d32ba5bce31f224cceb8",
+              "file": "examples/api-test.spec.ts",
+              "line": 59,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "examples\\google-search.spec.ts",
+      "file": "examples/google-search.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Google.com ΓÇö Quick Checks (POM)",
+          "file": "examples/google-search.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Homepage loads with correct title and search box",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2571,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify page title contains Google",
+                          "duration": 80
+                        },
+                        {
+                          "title": "Verify search input is visible",
+                          "duration": 12
+                        },
+                        {
+                          "title": "Verify Google logo or branding is present",
+                          "duration": 6
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:07.611Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e07e9a7e8cb980a4b9df-712e74858670e4cf69bc",
+              "file": "examples/google-search.spec.ts",
+              "line": 18,
+              "column": 7
+            },
+            {
+              "title": "Search box accepts input and shows suggestions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2121,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Type a search query",
+                          "duration": 199
+                        },
+                        {
+                          "title": "Verify text was entered in search box",
+                          "duration": 38
+                        },
+                        {
+                          "title": "Verify autocomplete suggestions appear",
+                          "duration": 121
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:10.780Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e07e9a7e8cb980a4b9df-6ef33563bba5d307fb32",
+              "file": "examples/google-search.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "Google Search and navigation buttons exist",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7993,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify Google Search button exists",
+                          "duration": 84
+                        },
+                        {
+                          "title": "Verify footer links are present",
+                          "duration": 5016
+                        },
+                        {
+                          "title": "Verify page language attribute",
+                          "duration": 5
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:12.931Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e07e9a7e8cb980a4b9df-c0546e975a26b525c81f",
+              "file": "examples/google-search.spec.ts",
+              "line": 46,
+              "column": 7
+            },
+            {
+              "title": "Visual snapshot of Google homepage",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3386,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Wait for page to stabilize",
+                          "duration": 1547
+                        },
+                        {
+                          "title": "Capture and compare visual baseline",
+                          "duration": 235
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:20.957Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e07e9a7e8cb980a4b9df-3ace3997d9cde3085254",
+              "file": "examples/google-search.spec.ts",
+              "line": 68,
+              "column": 7
+            },
+            {
+              "title": "Element discovery on Google homepage",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3825,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Discover all interactive elements",
+                          "duration": 1529
+                        },
+                        {
+                          "title": "Verify discovered elements include interactive controls",
+                          "duration": 1016
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:24.366Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e07e9a7e8cb980a4b9df-bdbf823692e9822c48ba",
+              "file": "examples/google-search.spec.ts",
+              "line": 82,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "examples\\mobile-test.spec.ts",
+      "file": "examples/mobile-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Mobile Responsive Testing",
+          "file": "examples/mobile-test.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "iPhone 14 ΓÇö responsive layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2873,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:09.746Z] [INFO] [Adapter:MobileAdapter]\u001b[0m Emulating device: iPhone 14\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Emulate iPhone 14",
+                          "duration": 14
+                        },
+                        {
+                          "title": "Navigate to app",
+                          "duration": 1226
+                        },
+                        {
+                          "title": "Verify mobile layout",
+                          "duration": 20
+                        },
+                        {
+                          "title": "Test touch interaction",
+                          "duration": 198
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:07.743Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1d3ed41ceff99a7202c7-3445729ef2016b3e9b31",
+              "file": "examples/mobile-test.spec.ts",
+              "line": 7,
+              "column": 7
+            },
+            {
+              "title": "iPad Pro ΓÇö tablet layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 836,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:11.562Z] [INFO] [Adapter:MobileAdapter]\u001b[0m Emulating device: iPad Pro\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Emulate iPad Pro",
+                          "duration": 7
+                        },
+                        {
+                          "title": "Navigate",
+                          "duration": 521
+                        },
+                        {
+                          "title": "Verify tablet layout",
+                          "duration": 9
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:11.250Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1d3ed41ceff99a7202c7-cfabe3b355f5e816c9c2",
+              "file": "examples/mobile-test.spec.ts",
+              "line": 28,
+              "column": 7
+            },
+            {
+              "title": "Swipe gesture test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1025,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[32m[2026-05-29T12:25:12.478Z] [INFO] [Adapter:MobileAdapter]\u001b[0m Emulating device: Pixel 7\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Setup mobile view",
+                          "duration": 486
+                        },
+                        {
+                          "title": "Perform swipe",
+                          "duration": 192
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:12.124Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1d3ed41ceff99a7202c7-3917ca5d019cb33abcf1",
+              "file": "examples/mobile-test.spec.ts",
+              "line": 43,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "examples\\web-app.spec.ts",
+      "file": "examples/web-app.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Web Application ΓÇö AI-Powered Tests (POM)",
+          "file": "examples/web-app.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Todo flow with self-healing selectors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2611,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Add a todo with self-healing",
+                          "duration": 145
+                        },
+                        {
+                          "title": "Verify todo was added",
+                          "duration": 18
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:07.842Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97643856095100531ac8-f40285f831bab348513e",
+              "file": "examples/web-app.spec.ts",
+              "line": 18,
+              "column": 7
+            },
+            {
+              "title": "Visual regression test",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1103,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Compare against baseline",
+                          "duration": 302
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:11.198Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97643856095100531ac8-8438c4570aa4ac1c33b8",
+              "file": "examples/web-app.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "AI-generated test data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 966,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Generate realistic test data",
+                          "duration": 4
+                        },
+                        {
+                          "title": "Use quick generators",
+                          "duration": 2
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:12.352Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97643856095100531ac8-1291f0353a344c045603",
+              "file": "examples/web-app.spec.ts",
+              "line": 39,
+              "column": 7
+            },
+            {
+              "title": "Element discovery",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1008,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Discover interactive elements",
+                          "duration": 170
+                        }
+                      ],
+                      "startTime": "2026-05-29T12:25:13.357Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "97643856095100531ac8-085e0c1fa806c454d28b",
+              "file": "examples/web-app.spec.ts",
+              "line": 64,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-29T12:25:05.986Z",
+    "duration": 22365.299000000003,
+    "expected": 17,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
